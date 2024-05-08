@@ -80,7 +80,14 @@ function AppendElements(elements, t, counter) {
 		newObj.name = el.libraryItem.name + "-" + counter[el.libraryItem.name];
 		newObj.x = el.x;
 		newObj.y = el.y;
-		newObj.r = el.rotation;
+
+		if (el.skewX !== 0 || el.skewY !== 0) {
+            // Calculate rotation from skew
+            newObj.r = el.skewX; // Average of X and Y skew
+        } else {
+            newObj.r = el.rotation;
+        }
+
 		if (el.scaleX != 1) newObj.scaleX = el.scaleX;
 		if (el.scaleY != 1) newObj.scaleY = el.scaleY;
 
